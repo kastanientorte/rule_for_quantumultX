@@ -27,4 +27,4 @@ BiliBili_标签页处理 = type=http-response,requires-body=1,max-size=0,pattern
 BiliBili_我的页面处理 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine,script-path=https://raw.githubusercontent.com/kastanientorte/rule_for_quantumultX/refs/heads/master/js/backup/bilibili_plus.js
 
 [MITM]
-hostname = %APPEND% *.bilibili.com, api.live.bilibili.com, api.vc.bilibili.com
+hostname = %APPEND% api.bilibili.com,api.live.bilibili.com, api.vc.bilibili.com,app.bilibili.com

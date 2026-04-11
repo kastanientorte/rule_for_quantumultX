@@ -1,24 +1,17 @@
 #!name=哔哩哔哩增强模组
 #!desc=哔哩哔哩脚本重写整合
-#!category=zqzess
+#!category=kastanie
 
-[Rule]
-DOMAIN-SUFFIX,cm.bilibili.com,REJECT
-URL-REGEX,^https?:\/\/api\.bilibili\.com\/x\/v2\/dm\/ad,REJECT
-URL-REGEX,https://app.bilibili.com/x/v2/(splash|search/(defaultword|square)),REJECT
+[Map Local]
+https?:\/\/api\.vc\.bilibili\.com\/topic_svr\/v1\/topic_svr data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
-[URL Rewrite]
-# BiliBili漫画去广告
-^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/Flash - reject
-^https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/ListFlash - reject
-^https?:\/\/api\.vc\.bilibili\.com\/dynamic_svr\/v1\/dynamic_svr\/mix_uplist - reject
-^https?:\/\/api\.vc\.bilibili\.com\/search_svr\/v\d\/Search\/recommend_words - reject
-^https?:\/\/api\.vc\.bilibili\.com\/topic_svr\/v1\/topic_svr - reject
-##可能的一些推广(beta)
-^https?:\/\/api\.bilibili\.com\/pgc\/season\/app\/related\/recommend\? - reject
-# > Bilibili SEA 解除 SIM 卡地区限制（by HotKids）
-(^https?:\/\/app\.biliintl\.com\/intl\/.+)(&sim_code=\d+)(.+) $1$3 302
+https?:\/\/api\.vc\.bilibili\.com\/dynamic_svr\/v1\/dynamic_svr\/mix_uplist data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
+https?:\/\/api\.bilibili\.com\/pgc\/season\/app\/related\/recommend\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/Flash data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+https?:\/\/manga\.bilibili\.com\/twirp\/comic\.v\d\.Comic\/ListFlash data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 
 [Script]
@@ -32,4 +25,4 @@ BiliBili_标签页处理 = type=http-response,requires-body=1,max-size=0,pattern
 BiliBili_我的页面处理 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine,script-path=https://raw.githubusercontent.com/kastanientorte/rule_for_quantumultX/refs/heads/master/js/backup/bilibili_plus.js
 
 [MITM]
-hostname = %APPEND% app.bilibili.com,api.live.bilibili.com,api.vc.bilibili.com,manga.bilibili.com,ap?.bilibili.com,app.biliintl.com,ap?.biliapi.net
+hostname = %APPEND% *.bilibili.com, api.live.bilibili.com, api.vc.bilibili.com
